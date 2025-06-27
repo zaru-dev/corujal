@@ -1,0 +1,37 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+// define a fonte de dados (PostgreSQL) e a URL do banco
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL") 
+}
+      
+// tabela/modelo dos alunos
+model Aluno {
+  matricula   String      @id            // chave primária única (ex: 20251023)
+  aluno       String                      // nome completo do aluno
+  turma       String                      // ex: "A", "B", "C"
+  turno       String                      // ex: "manhã", "tarde"
+  ocorrencias Ocorrencia[]               // relação 1:N com ocorrências (um aluno pode ter várias)
+}
+
+// tabela/modelo das ocorrências disciplinares
+model Ocorrencia {
+  id          Int      @id @default(autoincrement()) // ID único da ocorrência, gerado automaticamente
+  data        DateTime                               // data da ocorrência
+  descricao   String                                 // o que aconteceu
+  punicao     String                                 // punição aplicada (ex: "suspensão", "advertência")
+  
+  alunoId     String                                 // FK (foreign key) que aponta pra matrícula do aluno
+  aluno       Aluno    @relation(fields: [alunoId], references: [matricula], onDelete: Cascade)
+
+  // define a relação com o modelo Aluno:
+  // - alunoId é a FK
+  // - references: [matricula] → aponta pra qual campo do Aluno ela se refere
+  // - onDelete: Cascade → se o aluno for deletado, as ocorrências também são
+
+  @@index([alunoId]) // cria índice na coluna alunoId pra melhorar consultas
+}
