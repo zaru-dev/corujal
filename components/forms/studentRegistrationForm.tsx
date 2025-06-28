@@ -1,15 +1,14 @@
 "use client"
 
 // dependências:
-import React, { startTransition, useEffect, useRef } from "react";
+import React, { startTransition, useActionState, useRef } from "react";
 import { useForm } from "react-hook-form";
-import { useActionState } from "react";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 // componentes:
-import { Button } from "../ui/button"; // Ajuste os caminhos se necessário
-import { CardContent, CardFooter } from "../ui/card";
+import { Button } from "@/components/ui/button"; // Ajuste os caminhos se necessário
+import { CardContent, CardFooter } from "@/components/ui/card";
 import {
   Form,
   FormControl,
