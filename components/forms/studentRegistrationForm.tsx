@@ -116,6 +116,7 @@ export function StudentRegistrationForm(){
                         <SelectValue placeholder="Selecione"/>
                       </SelectTrigger>
                     </FormControl>
+                    
                     <SelectContent>
                       <SelectItem value="6">6º ano</SelectItem>
                       <SelectItem value="7">7º ano</SelectItem>
