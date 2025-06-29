@@ -12,7 +12,7 @@ import { cn } from "@/lib/utils";
 // importações de componentes:
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
-import { CardContent, CardFooter } from "@/components/ui/card";
+import { CardContent } from "@/components/ui/card";
 import {
   Form,
   FormControl,

@@ -50,6 +50,7 @@ export async function registerStudent(
     };
 
   } catch (error) {
+    console.error(error)
     return {
       success: false,
       message: "Erro ao cadastrar o(a) aluno(a). Tente novamente.",
