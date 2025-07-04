@@ -136,7 +136,8 @@ export function OccurrenceForm({ matricula }: OccurrenceFormProps) {
                       disabled={(date) =>
                         date > new Date() || date < new Date("1900-01-01")
                       }
-                      captionLayout="dropdown"
+                      captionLayout="dropdown-months"
+                      locale={ptBR}
                     />
                   </PopoverContent>
                 </Popover>
