@@ -10,13 +10,13 @@ CREATE TABLE "Aluno" (
 
 -- CreateTable
 CREATE TABLE "Ocorrencia" (
-    "id" SERIAL NOT NULL,
+    "codigo" TEXT NOT NULL,
     "data" TIMESTAMP(3) NOT NULL,
     "descricao" TEXT NOT NULL,
     "punicao" TEXT NOT NULL,
     "alunoId" TEXT NOT NULL,
 
-    CONSTRAINT "Ocorrencia_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "Ocorrencia_pkey" PRIMARY KEY ("codigo")
 );
 
 -- CreateIndex

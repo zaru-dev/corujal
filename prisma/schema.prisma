@@ -20,7 +20,7 @@ model Aluno {
 
 // tabela/modelo das ocorrências disciplinares
 model Ocorrencia {
-  id          Int      @id @default(autoincrement()) // ID único da ocorrência, gerado automaticamente
+  codigo      String   @id // ID único da ocorrência (ex: "20251023-001")
   data        DateTime                               // data da ocorrência
   descricao   String                                 // o que aconteceu
   punicao     String                                 // punição aplicada (ex: "suspensão", "advertência")
