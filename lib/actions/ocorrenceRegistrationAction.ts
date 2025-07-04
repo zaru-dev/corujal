@@ -1,14 +1,7 @@
 "use server";
 
-import { db } from "@/lib/db"; 
-
-interface RegisterOcorrenceActionResult {
-  success: boolean;
-  message?: string;
-  errors?: {
-    [key: string]: string[] | undefined;
-  };
-}
+import { db } from "@/lib/db";
+import { generateCodigo } from "@/lib/occurrenceCodeGenerator";
 
 export async function registerOcorrence(
   _prevState: any,
@@ -16,27 +9,26 @@ export async function registerOcorrence(
     matricula: string;
     detalhes: string;
     data: Date;
-    advertencia:  "Advertência verbal" | "Avertência escrita" | "Suspensão" | "Expulsão";
+    advertencia: "Advertência verbal" | "Advertência escrita" | "Suspensão" | "Expulsão";
   }
-): Promise<RegisterOcorrenceActionResult> {
+) {
   try {
-    await db.ocorrencia.create({
-      data:{
-        alunoId: data.matricula,
-        descricao: data.detalhes,
-        data: data.data,
-        punicao: data.advertencia
-      }
-    })
+    await db.$transaction(async (tx) => {
+      const codigo = await generateCodigo(tx, data.data);
 
-    return {
-      success: true,
-      message: "A ocorrência foi cadastrada."
-    };
-  } catch (error) {
-    return {
-      success: false,
-      message: "Erro ao cadastrar a ocorrência. Tente novamente."
-    }
+      await tx.ocorrencia.create({
+        data: {
+          codigo: codigo,
+          alunoId: data.matricula,
+          descricao: data.detalhes,
+          data: data.data,
+          punicao: data.advertencia,
+        },
+      });
+    });
+
+    return { success: true, message: "Ocorrência cadastrada." };
+  } catch (err) {
+    return { success: false, message: "Erro ao cadastrar a ocorrência. Tente novamente." };
   }
 }
