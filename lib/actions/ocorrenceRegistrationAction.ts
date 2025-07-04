@@ -15,10 +15,10 @@ export async function registerOcorrence(
   data: {
     matricula: string;
     detalhes: string;
-    data: Date
-    advertencia: string;
+    data: Date;
+    advertencia:  "Advertência verbal" | "Avertência escrita" | "Suspensão" | "Outras";
   }
-) {
+): Promise<RegisterOcorrenceActionResult> {
   try {
     await db.ocorrencia.create({
       data:{
