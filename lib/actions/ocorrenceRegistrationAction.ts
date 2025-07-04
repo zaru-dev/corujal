@@ -16,7 +16,7 @@ export async function registerOcorrence(
     matricula: string;
     detalhes: string;
     data: Date;
-    advertencia:  "Advertência verbal" | "Avertência escrita" | "Suspensão" | "Outras";
+    advertencia:  "Advertência verbal" | "Avertência escrita" | "Suspensão" | "Expulsão";
   }
 ): Promise<RegisterOcorrenceActionResult> {
   try {

@@ -52,7 +52,7 @@ const occurrenceSchema = z.object({
     "Advertência verbal",
     "Avertência escrita",
     "Suspensão",
-    "Outras",
+    "Expulsão",
   ]),
 });
 
@@ -171,7 +171,7 @@ export function OccurrenceForm({ matricula }: OccurrenceFormProps) {
                       Avertência escrita
                     </SelectItem>
                     <SelectItem value="Suspensão">Suspensão</SelectItem>
-                    <SelectItem value="Outras">Outras</SelectItem>
+                    <SelectItem value="Expulsão">Expulsão</SelectItem>
                   </SelectContent>
                 </Select>
                 <FormMessage />
