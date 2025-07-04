@@ -50,7 +50,7 @@ const occurrenceSchema = z.object({
   data: z.date(),
   advertencia: z.enum([
     "Advertência verbal",
-    "Avertência escrita",
+    "Advertência escrita",
     "Suspensão",
     "Expulsão",
   ]),
