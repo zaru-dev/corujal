@@ -164,11 +164,11 @@ export function OccurrenceForm({ matricula }: OccurrenceFormProps) {
                   </FormControl>
 
                   <SelectContent>
-                    <SelectItem value="Avertência verbal">
-                      Avertência verbal
+                    <SelectItem value="Advertência verbal">
+                      Advertência verbal
                     </SelectItem>
-                    <SelectItem value="Avertência escrita">
-                      Avertência escrita
+                    <SelectItem value="Advertência escrita">
+                      Advertência escrita
                     </SelectItem>
                     <SelectItem value="Suspensão">Suspensão</SelectItem>
                     <SelectItem value="Expulsão">Expulsão</SelectItem>
