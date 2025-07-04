@@ -1,7 +1,7 @@
 "use client";
 
 // importações de dependências:
-import React, { startTransition, useActionState } from "react";
+import React, { startTransition, useActionState, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -23,7 +23,7 @@ import { Input } from "@/components/ui/input";
 import { seachStudent } from "@/lib/actions/studentSeachAction";
 import { Loader } from "../ui/loader";
 import { Search } from "lucide-react";
-import { StudentFoundCard } from "../studentFoundCard";
+import { StudentFoundCard, StudentNotFoundCard } from "../studentSearchResultCard";
 import { OccurrenceForm } from "./occurrenceForm";
 
 // validação do formulário:
@@ -33,6 +33,7 @@ const studentSearchSchema = z.object({
 
 export function StudentSeachForm() {
   const [state, formAction, isPending] = useActionState(seachStudent, null);
+  const [showOccurrence, setShowOccurrence] = useState(false);
 
   const form = useForm<z.infer<typeof studentSearchSchema>>({
     resolver: zodResolver(studentSearchSchema),
@@ -42,6 +43,7 @@ export function StudentSeachForm() {
   });
 
   async function onSubmit(data: z.infer<typeof studentSearchSchema>) {
+    setShowOccurrence(false)
     startTransition(() => {
       formAction(data);
     });
@@ -66,7 +68,7 @@ export function StudentSeachForm() {
                     <Button
                       type="submit"
                       variant="outline"
-                      className="rounded-l-none border-l-0"
+                      className="rounded-l-none border-l-0 cursor-pointer"
                     >
                       {isPending ? <Loader /> : <Search />}
                     </Button>
@@ -79,18 +81,21 @@ export function StudentSeachForm() {
         </form>
       </Form>
 
-      {/* --- E AQUI MOSTRAMOS O RESULTADO (OU O SEGUNDO FORM) --- */}
-      {/* se a action retornou sucesso e temos os dados */}
-      {state && state.success && state.dados && (
-        <StudentFoundCard 
-          aluno = {state?.dados.aluno}
-          turma = {state?.dados.turma}
-          turno = {state?.dados.turno}
+      { !isPending && state?.success === true && state?.dados ? (
+        <StudentFoundCard
+          aluno={state!.dados.aluno}
+          turma={state!.dados.turma}
+          turno={state!.dados.turno}
+          onContinue={() => setShowOccurrence(true)}
+          invisible={showOccurrence}
         />
+      ) : !isPending && state?.success === false ? (
+        <StudentNotFoundCard />
+      ) : null } 
+
+      {showOccurrence && state?.success && state.dados && (
+        <OccurrenceForm matricula={state.dados.matricula} />
       )}
-      {state?.success === true ? (
-        <OccurrenceForm matricula={ state?.dados?.matricula as string }/>
-      ) : null}
     </CardContent>
   );
 }
