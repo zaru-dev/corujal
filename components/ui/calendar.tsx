@@ -43,10 +43,10 @@ function Calendar({
       classNames={{
         root: cn("w-fit", defaultClassNames.root),
         months: cn(
-          "flex gap-4 flex-col md:flex-row relative",
+          "flex gap-4 flex-col md:flex-row  relative",
           defaultClassNames.months
         ),
-        month: cn("flex flex-col w-full gap-4", defaultClassNames.month),
+        month: cn("flex flex-col w-full gap-4 ", defaultClassNames.month),
         nav: cn(
           "flex items-center gap-1 w-full absolute top-0 inset-x-0 justify-between",
           defaultClassNames.nav
@@ -58,11 +58,11 @@ function Calendar({
         ),
         button_next: cn(
           buttonVariants({ variant: buttonVariant }),
-          "size-(--cell-size) aria-disabled:opacity-50 p-0 select-none",
+          "size-(--cell-size)  aria-disabled:opacity-50 p-0 select-none",
           defaultClassNames.button_next
         ),
         month_caption: cn(
-          "flex items-center justify-center h-(--cell-size) w-full px-(--cell-size)",
+          "flex items-center  justify-center h-(--cell-size) w-full px-(--cell-size)",
           defaultClassNames.month_caption
         ),
         dropdowns: cn(
@@ -73,7 +73,7 @@ function Calendar({
           "relative has-focus:border-ring border border-input shadow-xs has-focus:ring-ring/50 has-focus:ring-[3px] rounded-md",
           defaultClassNames.dropdown_root
         ),
-        dropdown: cn("absolute inset-0 opacity-0", defaultClassNames.dropdown),
+        dropdown: cn("absolute inset-0 opacity-0 bg-background", defaultClassNames.dropdown),
         caption_label: cn(
           "select-none font-medium",
           captionLayout === "label"
@@ -97,7 +97,7 @@ function Calendar({
           defaultClassNames.week_number
         ),
         day: cn(
-          "relative w-full h-full p-0 text-center [&:first-child[data-selected=true]_button]:rounded-l-md [&:last-child[data-selected=true]_button]:rounded-r-md group/day aspect-square select-none",
+          "relative w-full h-full  p-0 text-center [&:first-child[data-selected=true]_button]:rounded-l-md [&:last-child[data-selected=true]_button]:rounded-r-md group/day aspect-square select-none",
           defaultClassNames.day
         ),
         range_start: cn(
