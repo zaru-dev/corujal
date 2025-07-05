@@ -108,10 +108,10 @@ export function OccurrenceSeachForm() {
               invisible={true}
             />
 
-            <Feedback icon={<Smile/>} text={state?.message as string}/>
+            <Feedback icon={<Smile/>} text={state?.message as string} className="mt-4"/>
           </>
         ) : !isPending && state?.success === 0 ? (
-          <Feedback icon={<RefreshCwOff />} text={state?.message as string}/>
+          <Feedback icon={<RefreshCwOff />} text={state?.message as string} className="mt-4"/>
         ) : null }
       </CardContent>
 
