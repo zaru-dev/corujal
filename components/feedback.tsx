@@ -7,7 +7,7 @@ interface FeedbackProps {
 
 export function Feedback({ icon, text }: FeedbackProps) {
   return (
-    <div className="flex gap-2 items-center p-2 border rounded-md mt-4 text-sm">
+    <div className="flex gap-2 items-center p-2 border rounded-md text-sm">
       {icon} <p>{text}</p>
     </div>
   );
