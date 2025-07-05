@@ -32,16 +32,20 @@ import { registerStudent } from "@/lib/actions/studentRegistrationAction";
 import { Feedback } from "../feedback";
 import { Check, RefreshCwOff } from "lucide-react";
 
+const valMessage = "O número de matrícula tem 6 dígitos";
+
 const zStringReq = (msg?: string) =>
   z.string().trim().min(1, { message: msg ?? "Este campo é obrigatório" });
 
 const registrationSchema = z.object({
-  matricula: z.string().trim().min(6, { message: "A matrícula tem 6 dígitos" }),
+  matricula: z.string().trim().min(6, valMessage).max(6, valMessage).transform((val) => val.toUpperCase()),
   aluno: zStringReq("Um nome válido é obrigatório"),
   ano: z.enum(["6", "7", "8", "9"], {
     message: "É obrigatório informar o ano",
   }),
-  turma: zStringReq().max(1).transform((val) => val.toUpperCase()),
+  turma: zStringReq().max(1).regex(/^[^0-9]*$/, {
+  message: "Não é permitido usar números"
+}).transform((val) => val.toUpperCase()),
   turno: z.enum(["Matutino", "Vespertino"], {
     message: "É obrigatório informar o turno",
   }),
@@ -85,7 +89,7 @@ export function StudentRegistrationForm(){
                 <FormItem>
                   <FormLabel>Matrícula</FormLabel>
                   <FormControl>
-                    <Input {...field} />
+                    <Input {...field} className="uppercase"/>
                   </FormControl>
                   <FormMessage />
                 </FormItem>

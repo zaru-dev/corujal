@@ -34,8 +34,9 @@ import { OccurrenceCard } from "../occurrenceCard";
 import { Feedback } from "../feedback";
 
 // validação do formulário:
+const valMessage = "O número de matrícula tem 6 dígitos";
 const occurrenceSeachForm = z.object({
-  matricula: z.string().min(1, "O termo de pesquisa é obrigatório"),
+  matricula: z.string().min(6, valMessage).max(6, valMessage).transform((val) => val.toUpperCase()),
 });
 
 export function OccurrenceSeachForm() {
@@ -72,7 +73,7 @@ export function OccurrenceSeachForm() {
                   <FormLabel>Matricula</FormLabel>
                   <FormControl>
                     <div className="flex">
-                      <Input {...field} className="rounded-r-none" />
+                      <Input {...field} className="rounded-r-none uppercase" />
                       <Button
                         type="submit"
                         variant="outline"

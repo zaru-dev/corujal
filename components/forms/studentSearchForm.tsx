@@ -27,8 +27,9 @@ import { StudentFoundCard, StudentNotFoundCard } from "../studentSearchResultCar
 import { OccurrenceForm } from "./occurrenceForm";
 
 // validação do formulário:
+const valMessage = "O número de matrícula tem 6 dígitos";
 const studentSearchSchema = z.object({
-  matricula: z.string().min(1, "O termo de pesquisa é obrigatório"),
+  matricula: z.string().min(6, valMessage).max(6, valMessage).transform((val) => val.toUpperCase()),
 });
 
 export function StudentSeachForm() {
