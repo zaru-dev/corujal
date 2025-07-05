@@ -1,12 +1,7 @@
 "use client";
 
 // dependências:
-import React, {
-  startTransition,
-  useActionState,
-  useEffect,
-  useRef,
-} from "react";
+import React, { useState, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -33,10 +28,6 @@ import {
 } from "@/components/ui/select";
 
 // actions:
-import { registerStudent } from "@/lib/actions/studentRegistrationAction";
-import { Feedback } from "../feedback";
-
-const valMessage = "O número de matrícula tem 6 dígitos";
 
 const zStringReq = (msg?: string) =>
   z
@@ -66,8 +57,10 @@ const registrationSchema = z.object({
   }),
 });
 
-export function StudentRegistrationForm() {
-  const [state, formAction, isPending] = useActionState(registerStudent, null);
+export function StudentRegistrationForm(){
+  const [isPending, setIsPending] = useState(false);
+const [state, setState] = useState<{ success: boolean, message: string } | null>(null);
+
 
   const form = useForm<z.infer<typeof registrationSchema>>({
     resolver: zodResolver(registrationSchema),
@@ -90,11 +83,30 @@ export function StudentRegistrationForm() {
 
   const formRef = useRef<HTMLFormElement>(null);
 
-  async function onSubmit(data: z.infer<typeof registrationSchema>) {
-    startTransition(() => {
-      formAction(data);
+ async function onSubmit(data: z.infer<typeof registrationSchema>) {
+  try {
+    setIsPending(true);
+    const res = await fetch("/api/aluno", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data),
     });
+
+    const json = await res.json();
+    setState({ success: json.success, message: json.message || "" });
+
+    if (json.success) {
+      form.reset(); // limpa os campos
+    }
+  } catch (err) {
+    console.error(err);
+    setState({ success: false, message: "Erro inesperado." });
+  } finally {
+    setIsPending(false);
   }
+}
 
   return (
     <Form {...form}>
