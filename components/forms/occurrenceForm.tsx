@@ -151,7 +151,7 @@ export function OccurrenceForm({ matricula }: OccurrenceFormProps) {
             name="medida"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Advertência</FormLabel>
+                <FormLabel>Medida</FormLabel>
                 <Select
                   onValueChange={field.onChange}
                   defaultValue={field.value}
