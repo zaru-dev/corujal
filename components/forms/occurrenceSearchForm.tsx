@@ -27,7 +27,7 @@ import { OccurrenceStudentFoundCard, StudentNotFoundCard } from "../studentSearc
 import { OccurrenceForm } from "./occurrenceForm";
 
 // validação do formulário:
-const studentSearchSchema = z.object({
+const occurrenceSeachForm = z.object({
   matricula: z.string().min(1, "O termo de pesquisa é obrigatório"),
 });
 
@@ -35,14 +35,14 @@ export function OccurrenceSeachForm() {
   const [state, formAction, isPending] = useActionState(seachStudent, null);
   const [showOccurrence, setShowOccurrence] = useState(false);
 
-  const form = useForm<z.infer<typeof studentSearchSchema>>({
-    resolver: zodResolver(studentSearchSchema),
+  const form = useForm<z.infer<typeof occurrenceSeachForm>>({
+    resolver: zodResolver(occurrenceSeachForm),
     defaultValues: {
       matricula: "",
     },
   });
 
-  async function onSubmit(data: z.infer<typeof studentSearchSchema>) {
+  async function onSubmit(data: z.infer<typeof occurrenceSeachForm>) {
     setShowOccurrence(false)
     startTransition(() => {
       formAction(data);

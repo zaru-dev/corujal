@@ -23,7 +23,7 @@ model Ocorrencia {
   codigo      String   @id // ID único da ocorrência (ex: "20251023-001")
   data        DateTime                               // data da ocorrência
   descricao   String                                 // o que aconteceu
-  punicao     String                                 // punição aplicada (ex: "suspensão", "advertência")
+  medida     String                                 // punição aplicada (ex: "suspensão", "advertência")
   
   alunoId     String                                 // FK (foreign key) que aponta pra matrícula do aluno
   aluno       Aluno    @relation(fields: [alunoId], references: [matricula], onDelete: Cascade)

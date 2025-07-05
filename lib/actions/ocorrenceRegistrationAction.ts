@@ -9,7 +9,7 @@ export async function registerOcorrence(
     matricula: string;
     detalhes: string;
     data: Date;
-    advertencia: "Advertência verbal" | "Advertência escrita" | "Suspensão" | "Expulsão";
+    medida: "Advertência verbal" | "Advertência escrita" | "Suspensão" | "Expulsão";
   }
 ) {
   try {
@@ -22,7 +22,7 @@ export async function registerOcorrence(
           alunoId: data.matricula,
           descricao: data.detalhes,
           data: data.data,
-          punicao: data.advertencia,
+          medida: data.medida,
         },
       });
     });

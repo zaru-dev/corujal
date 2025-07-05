@@ -48,7 +48,7 @@ interface OccurrenceFormProps {
 const occurrenceSchema = z.object({
   detalhes: z.string().trim().min(2, "Você precisa descrever a ocorrência"),
   data: z.date(),
-  advertencia: z.enum([
+  medida: z.enum([
     "Advertência verbal",
     "Advertência escrita",
     "Suspensão",
@@ -63,7 +63,7 @@ export function OccurrenceForm({ matricula }: OccurrenceFormProps) {
     defaultValues: {
       detalhes: "",
       data: undefined,
-      advertencia: undefined,
+      medida: undefined,
     },
   });
 
@@ -72,7 +72,7 @@ export function OccurrenceForm({ matricula }: OccurrenceFormProps) {
       matricula: matricula,
       detalhes: values.detalhes,
       data: values.data,
-      advertencia: values.advertencia
+      medida: values.medida
     }
 
     startTransition(() => {
@@ -148,7 +148,7 @@ export function OccurrenceForm({ matricula }: OccurrenceFormProps) {
 
           <FormField
             control={occurrenceForm.control}
-            name="advertencia"
+            name="medida"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Advertência</FormLabel>
