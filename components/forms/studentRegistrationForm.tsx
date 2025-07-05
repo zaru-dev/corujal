@@ -29,6 +29,8 @@ import {
 
 // actions:
 import { registerStudent } from "@/lib/actions/studentRegistrationAction"; 
+import { Feedback } from "../feedback";
+import { Check, RefreshCwOff } from "lucide-react";
 
 const zStringReq = (msg?: string) =>
   z.string().trim().min(1, { message: msg ?? "Este campo é obrigatório" });
@@ -72,10 +74,10 @@ export function StudentRegistrationForm(){
       <form 
         ref={formRef}
         onSubmit= {form.handleSubmit(onSubmit)}
-        className="flex flex-col gap-4 mt-3"
+        className="flex flex-col mt-3 gap-4"
       >
-        <CardContent className="space-y-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-x-4 gap-y-4">
+        <CardContent className="space-y-4">
+          <div className="grid grid-cols-3 gap-x-4 gap-y-4">
             <FormField
               control={form.control}
               name="matricula"
@@ -112,7 +114,7 @@ export function StudentRegistrationForm(){
                   <FormLabel>Ano</FormLabel>
                   <Select onValueChange={field.onChange} defaultValue={field.value} name={field.name}>
                     <FormControl>
-                      <SelectTrigger className="w-full">
+                      <SelectTrigger className="w-full max-w-full">
                         <SelectValue placeholder="Selecione"/>
                       </SelectTrigger>
                     </FormControl>
@@ -136,7 +138,7 @@ export function StudentRegistrationForm(){
                 <FormItem>
                   <FormLabel>Turma</FormLabel>
                   <FormControl>
-                    <Input {...field} maxLength={1} className="uppercase"/>
+                    <Input {...field} maxLength={1} className="uppercase w-full max-w-full"/>
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -151,7 +153,7 @@ export function StudentRegistrationForm(){
                   <FormLabel>Turno</FormLabel>
                   <Select onValueChange={field.onChange} defaultValue={field.value} name={field.name}>
                     <FormControl>
-                      <SelectTrigger className="w-full max-w-[7.625rem]">
+                      <SelectTrigger className="w-full max-w-full">
                         <SelectValue placeholder="Selecione" />
                       </SelectTrigger>
                     </FormControl>
@@ -167,18 +169,18 @@ export function StudentRegistrationForm(){
           </div>
 
           {state?.message && !state.success && (
-            <p className="text-sm text-red-500">{state.message}</p>
+            <Feedback icon={<RefreshCwOff />} text={state.message} />
           )}
           {state?.message && state.success && (
-            <p className="text-sm text-green-600">Aluno cadastrado com sucesso!</p>
+            <Feedback icon={<Check />} text={state.message} />
           )}
         </CardContent>
 
-        <CardFooter className="grid grid-cols-3">
+        <CardFooter className="grid grid-cols-3 gap-x-4 gap-y-4">
           <Button 
             type="submit" 
             disabled={isPending}
-            className="w-full col-span-1"
+            className="w-full max-w-full col-span-1"
           >
             { isPending ? <Loader /> : "Criar" }
           </Button>
