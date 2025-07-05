@@ -46,6 +46,7 @@ export async function seachStudent(
       }
     };
   } catch(error) {
+    console.error(error);
     return {
       success: false,
       message: "Ocorreu um erro inesperado. Tente novamente."

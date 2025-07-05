@@ -73,7 +73,8 @@ export async function seachOccurrence(
         })),
       },
     };
-  } catch (_error) {
+  } catch (error) {
+    console.error(error);
     return {
       success: 0,
       message: "Ocorreu um erro inesperado. Tente novamente.",
