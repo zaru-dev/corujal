@@ -20,14 +20,18 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Loader } from "../ui/loader";
-import { StudentFoundCard, StudentNotFoundCard } from "@/components/studentSearchResultCard";
+import {
+  StudentFoundCard,
+  StudentNotFoundCard,
+} from "@/components/studentSearchResultCard";
 
 // ícones:
-import { Search } from "lucide-react";
+import { RefreshCwOff, Search, Smile } from "lucide-react";
 
 // actions:
 import { seachOccurrence } from "@/lib/actions/occurrenceSearchAction";
 import { OccurrenceCard } from "../occurrenceCard";
+import { Feedback } from "../feedback";
 
 // validação do formulário:
 const occurrenceSeachForm = z.object({
@@ -46,67 +50,87 @@ export function OccurrenceSeachForm() {
   });
 
   async function onSubmit(data: z.infer<typeof occurrenceSeachForm>) {
-    setShowOccurrence(false)
+    setShowOccurrence(false);
     startTransition(() => {
       formAction(data);
     });
-  };
+  }
 
   return (
-    <CardContent>
-      <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className="flex flex-col gap-4"
-        >
-          <FormField
-            control={form.control}
-            name="matricula"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Matricula</FormLabel>
-                <FormControl>
-                  <div className="flex">
-                    <Input {...field} className="rounded-r-none" />
-                    <Button
-                      type="submit"
-                      variant="outline"
-                      className="rounded-l-none border-l-0 cursor-pointer"
-                    >
-                      {isPending ? <Loader /> : <Search />}
-                    </Button>
-                  </div>
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        </form>
-      </Form>
+    <>
+      <CardContent>
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="flex flex-col gap-4 mt-3"
+          >
+            <FormField
+              control={form.control}
+              name="matricula"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Matricula</FormLabel>
+                  <FormControl>
+                    <div className="flex">
+                      <Input {...field} className="rounded-r-none" />
+                      <Button
+                        type="submit"
+                        variant="outline"
+                        className="rounded-l-none border-l-0 cursor-pointer"
+                      >
+                        {isPending ? <Loader /> : <Search />}
+                      </Button>
+                    </div>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </form>
+        </Form>
 
-      { !isPending && state?.success === true && state?.dados ? (
-        <StudentFoundCard
-          aluno={state!.dados.aluno}
-          turma={state!.dados.turma}
-          turno={state!.dados.turno}
-          onContinue={() => setShowOccurrence(true)}
-          invisible={showOccurrence}
-        />
-      ) : !isPending && state?.success === false ? (
-        <StudentNotFoundCard />
-      ) : null } 
-
-      { showOccurrence && state?.success && state.dados && (
-        state?.dados.ocorrencias?.map((ocorrencia) => (
-          <OccurrenceCard
-            key={ocorrencia.codigo}
-            codigo={ocorrencia.codigo}
-            descricao={ocorrencia.descricao}
-            data={format(ocorrencia.data, "dd/MM/yyyy")}
-            medida={ocorrencia.medida}
+        {!isPending && state?.success === 9 && state?.dados ? (
+          <StudentFoundCard
+            aluno={state!.dados.aluno}
+            turma={state!.dados.turma}
+            turno={state!.dados.turno}
+            onContinue={() => setShowOccurrence(true)}
+            invisible={showOccurrence}
           />
-        ))
+        ) : !isPending && state?.success === 1 ? (
+          <StudentNotFoundCard />
+        ) : !isPending && state?.success === 2 && state?.dados ? (
+          <>
+            <StudentFoundCard
+              aluno={state!.dados.aluno}
+              turma={state!.dados.turma}
+              turno={state!.dados.turno}
+              invisible={true}
+            />
+
+            <Feedback icon={<Smile/>} text={state?.message!}/>
+          </>
+        ) : !isPending && state?.success === 0 ? (
+          <Feedback icon={<RefreshCwOff />} text={state?.message!}/>
+        ) : null }
+      </CardContent>
+
+      {showOccurrence && state?.success && state.dados && (
+        <>
+          <p className="px-6 mt-3 font-semibold">Ocorrências deste aluno:</p>
+          <div className="max-h-full overflow-y-scroll no-scrollbar px-6 flex flex-col gap-4 mt-3">
+            {state?.dados.ocorrencias?.map((ocorrencia) => (
+              <OccurrenceCard
+                key={ocorrencia.codigo}
+                codigo={ocorrencia.codigo}
+                descricao={ocorrencia.descricao}
+                data={format(ocorrencia.data, "dd/MM/yyyy")}
+                medida={ocorrencia.medida}
+              />
+            ))}
+          </div>
+        </>
       )}
-    </CardContent>
+    </>
   );
-};
+}
