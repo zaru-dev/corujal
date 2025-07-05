@@ -18,7 +18,7 @@ interface SearchStudentActionResult {
 }
 
 export async function seachStudent(
-  _prevState: any,
+  _prevState: SearchStudentActionResult | null,
   data: {
     matricula: string
   }

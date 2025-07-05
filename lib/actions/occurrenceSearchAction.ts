@@ -24,7 +24,7 @@ interface SearchOccurrenceActionResult {
 }
 
 export async function seachOccurrence(
-  _prevState: any,
+  _prevState: SearchOccurrenceActionResult | null,
   data: {
     matricula: string;
   }

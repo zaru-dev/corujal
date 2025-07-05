@@ -3,15 +3,20 @@
 import { db } from "@/lib/db";
 import { generateCodigo } from "@/lib/occurrenceCodeGenerator";
 
+interface RegisterOccurrenceActionResult {
+  success: boolean;
+  message: string;
+}
+
 export async function registerOcorrence(
-  _prevState: any,
+  _prevState: RegisterOccurrenceActionResult | null,
   data: {
     matricula: string;
     detalhes: string;
     data: Date;
     medida: "Advertência verbal" | "Advertência escrita" | "Suspensão" | "Expulsão";
   }
-) {
+): Promise<RegisterOccurrenceActionResult> {
   try {
     await db.$transaction(async (tx) => {
       const codigo = await generateCodigo(tx, data.data);

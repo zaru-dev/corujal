@@ -12,7 +12,7 @@ interface RegisterStudentActionResult {
 }
 
 export async function registerStudent(
-  _prevState: any, 
+  _prevState: RegisterStudentActionResult | null, 
   data: {
     matricula: string;
     aluno: string;
