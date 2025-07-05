@@ -28,7 +28,7 @@ function StudentFoundCard({
   invisible,
 }: StudentFoundCardProps) {
   return (
-    <div className="flex flex-col gap-3 text-sm border rounded-md p-4 mt-4 dark:bg-input/30">
+    <div className="flex flex-col gap-3 text-sm border rounded-md p-4 mt-4 bg-input/30">
       <div>
         <ul className="grid grid-cols-3 grid-rows-2">
           <li className="col-span-2 w-full font-semibold">Aluno encontrado</li>
@@ -71,40 +71,4 @@ function StudentNotFoundCard() {
   );
 }
 
-// to occurrenceSearchForm.tsx
-interface OccurrenceStudentFoundCardProps {
-  aluno: string;
-  turma: string;
-  turno: string;
-}
-
-function OccurrenceStudentFoundCard({
-  aluno,
-  turma,
-  turno,
-}: OccurrenceStudentFoundCardProps ) {
-  return (
-    <div className="flex flex-col gap-3 text-sm border rounded-md p-4 mt-4 dark:bg-input/30">
-      <div>
-        <ul className="grid grid-cols-3 grid-rows-2">
-          <li className="col-span-2 w-full font-semibold">Aluno encontrado</li>
-          <li className="pl-4 font-semibold">Turma</li>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <li className="line-clamp-1 col-span-2 w-full hyphens-auto">
-                {aluno}
-              </li>
-            </TooltipTrigger>
-            <TooltipContent>{aluno}</TooltipContent>
-          </Tooltip>
-          <li className="pl-4">
-            {turma} da {turno === "Vespertino" ? "Manhã" : "Manhã"}
-          </li>
-        </ul>
-      </div>
-      
-    </div>
-  );
-}
-
-export { StudentFoundCard, StudentNotFoundCard, OccurrenceStudentFoundCard };
+export { StudentFoundCard, StudentNotFoundCard };
