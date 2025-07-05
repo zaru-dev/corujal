@@ -73,7 +73,7 @@ export async function seachOccurrence(
         })),
       },
     };
-  } catch (error) {
+  } catch (_error) {
     return {
       success: 0,
       message: "Ocorreu um erro inesperado. Tente novamente.",

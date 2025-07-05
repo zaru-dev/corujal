@@ -28,7 +28,7 @@ export async function registerOcorrence(
     });
 
     return { success: true, message: "Ocorrência cadastrada." };
-  } catch (err) {
+  } catch (_error) {
     return { success: false, message: "Erro ao cadastrar a ocorrência. Tente novamente." };
   }
 }
