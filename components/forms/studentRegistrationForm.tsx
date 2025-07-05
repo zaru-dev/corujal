@@ -72,7 +72,7 @@ export function StudentRegistrationForm(){
       <form 
         ref={formRef}
         onSubmit= {form.handleSubmit(onSubmit)}
-        className="flex flex-col gap-4"
+        className="flex flex-col gap-4 mt-3"
       >
         <CardContent className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-x-4 gap-y-4">

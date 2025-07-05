@@ -36,10 +36,11 @@ import {
 import { Textarea } from "../ui/textarea";
 
 // ícones:
-import { CalendarIcon } from "lucide-react";
+import { CalendarIcon, Check, RefreshCwOff } from "lucide-react";
 
 // actions:
 import { registerOcorrence } from "@/lib/actions/ocorrenceRegistrationAction";
+import { Feedback } from "../feedback";
 
 interface OccurrenceFormProps {
   matricula: string;
@@ -180,10 +181,10 @@ export function OccurrenceForm({ matricula }: OccurrenceFormProps) {
           />
         </div>
         {state?.message && !state.success && (
-            <p className="text-sm text-red-500">{state.message}</p>
+            <Feedback icon={<RefreshCwOff />} text={state.message} />
           )}
           {state?.message && state.success && (
-            <p className="text-sm text-green-600">Ocorrência cadastrada com sucesso!</p>
+            <Feedback icon={<Check />} text={state.message} />
           )}
         <Button type="submit">{isPending ? <Loader /> : "Cadastrar"}</Button>
       </form>

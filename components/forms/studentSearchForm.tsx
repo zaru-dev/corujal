@@ -54,7 +54,7 @@ export function StudentSeachForm() {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="flex flex-col gap-4"
+          className="flex flex-col gap-4 mt-3"
         >
           <FormField
             control={form.control}
