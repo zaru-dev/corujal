@@ -5,6 +5,7 @@ import React, { startTransition, useActionState, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { format } from "date-fns";
 
 // importações de componentes:
 import { Button } from "@/components/ui/button";
@@ -18,13 +19,15 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { Loader } from "../ui/loader";
+import { StudentFoundCard, StudentNotFoundCard } from "@/components/studentSearchResultCard";
+
+// ícones:
+import { Search } from "lucide-react";
 
 // actions:
-import { seachStudent } from "@/lib/actions/studentSeachAction";
-import { Loader } from "../ui/loader";
-import { Search } from "lucide-react";
-import { OccurrenceStudentFoundCard, StudentNotFoundCard } from "../studentSearchResultCard";
-import { OccurrenceForm } from "./occurrenceForm";
+import { seachOccurrence } from "@/lib/actions/occurrenceSearchAction";
+import { OccurrenceCard } from "../occurrenceCard";
 
 // validação do formulário:
 const occurrenceSeachForm = z.object({
@@ -32,7 +35,7 @@ const occurrenceSeachForm = z.object({
 });
 
 export function OccurrenceSeachForm() {
-  const [state, formAction, isPending] = useActionState(seachStudent, null);
+  const [state, formAction, isPending] = useActionState(seachOccurrence, null);
   const [showOccurrence, setShowOccurrence] = useState(false);
 
   const form = useForm<z.infer<typeof occurrenceSeachForm>>({
@@ -82,18 +85,28 @@ export function OccurrenceSeachForm() {
       </Form>
 
       { !isPending && state?.success === true && state?.dados ? (
-        <OccurrenceStudentFoundCard
+        <StudentFoundCard
           aluno={state!.dados.aluno}
           turma={state!.dados.turma}
           turno={state!.dados.turno}
+          onContinue={() => setShowOccurrence(true)}
+          invisible={showOccurrence}
         />
       ) : !isPending && state?.success === false ? (
         <StudentNotFoundCard />
       ) : null } 
 
-      {showOccurrence && state?.success && state.dados && (
-        <OccurrenceForm matricula={state.dados.matricula} />
+      { showOccurrence && state?.success && state.dados && (
+        state?.dados.ocorrencias?.map((ocorrencia) => (
+          <OccurrenceCard
+            key={ocorrencia.codigo}
+            codigo={ocorrencia.codigo}
+            descricao={ocorrencia.descricao}
+            data={format(ocorrencia.data, "dd/MM/yyyy")}
+            medida={ocorrencia.medida}
+          />
+        ))
       )}
     </CardContent>
   );
-}
+};
