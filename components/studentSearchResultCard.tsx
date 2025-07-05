@@ -15,8 +15,8 @@ interface StudentFoundCardProps {
   aluno: string;
   turma: string;
   turno: string;
-  onContinue: () => void;
-  invisible: boolean;
+  onContinue?: () => void;
+  invisible?: boolean;
 }
 
 // to occurrenceForm.tsx
