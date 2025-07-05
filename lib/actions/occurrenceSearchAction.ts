@@ -4,7 +4,7 @@
 import { db } from "@/lib/db";
 
 interface SearchOccurrenceActionResult {
-  success: boolean;
+  success: number;
   message?: string;
   dados?: {
     matricula: string;
@@ -37,8 +37,7 @@ export async function seachOccurrence(
 
     if (!student) {
       return {
-        success: false,
-        message: "Este(a) aluno(a) não está cadastado(a)",
+        success: 1,
       };
     }
 
@@ -48,13 +47,19 @@ export async function seachOccurrence(
 
     if (studentHasOccurrences.length === 0) {
       return {
-        success: false,
+        success: 2,
         message: "Este(a) aluno(a) não possui ocorrências registradas.",
+        dados: {
+          matricula: student.matricula,
+          aluno: student.aluno,
+          turma: student.turma,
+          turno: student.turno,
+        },
       };
     }
 
     return {
-      success: true,
+      success: 9,
       dados: {
         matricula: student.matricula,
         aluno: student.aluno,
@@ -70,7 +75,7 @@ export async function seachOccurrence(
     };
   } catch (error) {
     return {
-      success: false,
+      success: 0,
       message: "Ocorreu um erro inesperado. Tente novamente.",
     };
   }
