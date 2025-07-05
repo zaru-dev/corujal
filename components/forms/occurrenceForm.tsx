@@ -179,7 +179,12 @@ export function OccurrenceForm({ matricula }: OccurrenceFormProps) {
             )}
           />
         </div>
-
+        {state?.message && !state.success && (
+            <p className="text-sm text-red-500">{state.message}</p>
+          )}
+          {state?.message && state.success && (
+            <p className="text-sm text-green-600">Ocorrência cadastrada com sucesso!</p>
+          )}
         <Button type="submit">{isPending ? <Loader /> : "Cadastrar"}</Button>
       </form>
     </Form>

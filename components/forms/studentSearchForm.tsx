@@ -94,7 +94,7 @@ export function StudentSeachForm() {
       ) : null } 
 
       {showOccurrence && state?.success && state.dados && (
-        <OccurrenceForm matricula={state.dados.matricula} />
+        <OccurrenceForm matricula={state?.dados.matricula} />
       )}
     </CardContent>
   );
