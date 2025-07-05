@@ -3,7 +3,7 @@ import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/ca
 
 export default function VerOcorrencias() {
   return(
-    <Card className="w-full max-w-md">
+    <Card className="max-w-md w-full max-h-[calc(100dvh-2rem)] gap-0">
       <CardHeader>
         <CardTitle>Procurar ocorrências</CardTitle>
         <CardDescription>Digite a matrícula para começar</CardDescription>
