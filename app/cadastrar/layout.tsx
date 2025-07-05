@@ -8,10 +8,8 @@ export default function Layout({
   children: React.ReactNode;
 }>){
   return(
-    <div className="min-w-dvw min-h-dvh flex justify-center items-center">
-      <main className="container flex flex-col justify-center items-center gap-2">
-        {children}
-      </main>
+    <div className="min-w-dvw min-h-dvh max-h-dvh flex justify-center items-center p-4 box-border">
+      {children}
     </div>
   )
 };

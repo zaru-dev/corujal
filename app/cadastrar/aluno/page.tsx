@@ -4,7 +4,7 @@ import { StudentRegistrationForm } from "@/components/forms/studentRegistrationF
 
 export default function Page(){
   return(
-    <Card className="w-full max-w-md">
+    <Card className="max-w-md w-full max-h-[calc(100dvh-2rem)] gap-0">
       <CardHeader>
         <CardTitle>Cadastro de aluno</CardTitle>
         <CardDescription>Preencha os dados do aluno</CardDescription>
