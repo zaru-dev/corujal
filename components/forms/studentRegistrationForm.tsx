@@ -30,7 +30,6 @@ import {
 // actions:
 import { registerStudent } from "@/lib/actions/studentRegistrationAction";
 import { Feedback } from "../feedback";
-import { Check, RefreshCwOff } from "lucide-react";
 
 const valMessage = "O número de matrícula tem 6 dígitos";
 

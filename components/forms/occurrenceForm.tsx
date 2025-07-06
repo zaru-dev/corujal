@@ -36,7 +36,7 @@ import {
 import { Textarea } from "../ui/textarea";
 
 // ícones:
-import { CalendarIcon, Check, RefreshCwOff } from "lucide-react";
+import { CalendarIcon } from "lucide-react";
 
 // actions:
 import { registerOcorrence } from "@/lib/actions/ocorrenceRegistrationAction";
