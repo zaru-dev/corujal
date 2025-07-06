@@ -16,8 +16,7 @@ interface PanoramaActionResult {
   }[];
 }
 
-export async function bringOccurrences(
-): Promise<PanoramaActionResult> {
+export async function bringOccurrences(): Promise<PanoramaActionResult> {
   try {
     const occurrences = await db.ocorrencia.findMany({
       include: {

@@ -38,7 +38,7 @@ export function PanoramaOccurrencesCard({
           <span className="font-mono select-text">{codigo}</span>
         </CardTitle>
         <Badge variant="outline" className="select-none">
-          { !situacao ? "Indefinido" : situacao }
+          { situacao === "" || situacao === undefined ? "Indefinido" : situacao }
         </Badge>
       </CardHeader>
 
