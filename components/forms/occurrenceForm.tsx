@@ -85,7 +85,11 @@ export function OccurrenceForm({ matricula }: OccurrenceFormProps) {
   }
 
   useEffect(() => {
-    state?.success && occurrenceForm.reset();
+    if(state?.success){
+      occurrenceForm.reset();
+    } else{
+      return;
+    }
   }, [state?.success, occurrenceForm]);
 
   return (

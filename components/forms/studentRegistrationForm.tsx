@@ -81,8 +81,12 @@ export function StudentRegistrationForm() {
   });
 
   useEffect(() => {
-    state?.success && form.reset();
-  }, [state?.success, form]);
+      if(state?.success){
+        form.reset();
+      } else{
+        return;
+      }
+    }, [state?.success, form]);
 
   const formRef = useRef<HTMLFormElement>(null);
 
