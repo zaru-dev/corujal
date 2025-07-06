@@ -16,7 +16,7 @@ const feedbackVariants = cva(
         success:
           "bg-blue-highlight/10 text-blue-highlight border-blue-highlight/30",
         happy:
-          "bg-blue-highlight/10 text-blue-highlight border-blue-highlight/30",
+          "bg-yellow-highlight/10 text-yellow-highlight border-yellow-highlight/30",
         error:
           "bg-orange-highlight/8 text-orange-highlight border-orange-highlight/30",
       },

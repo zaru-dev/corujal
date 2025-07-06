@@ -43,6 +43,7 @@
   --radius-xl: calc(var(--radius) + 4px);
   --color-orange-highlight: var(--orange-highlight);
   --color-blue-highlight: var(--blue-highlight);
+  --color-yellow-highlight: var(--yellow-highlight);
 }
 
 :root {
@@ -81,6 +82,7 @@
 
   --blue-highlight: oklch(47.903% 0.28012 266.359);
   --orange-highlight: oklch(68.823% 0.16756 56.42);
+  --yellow-highlight: oklch(80.358% 0.16774 101.493);
 }
 
 .dark {
@@ -118,6 +120,7 @@
 
   --blue-highlight: oklch(69.521% 0.16621 250.319);
   --orange-highlight: oklch(76.162% 0.15979 63.404);
+  --yellow-highlight: oklch(84.729% 0.17687 101.282);
 }
 
 @layer base {
