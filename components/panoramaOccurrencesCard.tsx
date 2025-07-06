@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/card";
 
 // ícones
-import { Pencil, Trash2 } from "lucide-react";
+import { Download, Pencil, Trash2 } from "lucide-react";
 
 interface PanoramaOccurrencesCardProps {
   codigo: string;
@@ -55,7 +55,7 @@ export function PanoramaOccurrencesCard({
 
         <div className="flex flex-col">
           <p className="font-semibold select-none">Detalhes</p>
-          <p className="hyphens-auto line-clamp-3">
+          <p className="hyphens-auto line-clamp-3 h-[2.5rem]">
             {descricao}
           </p>
         </div>
@@ -63,6 +63,9 @@ export function PanoramaOccurrencesCard({
 
       <CardFooter className="flex justify-between items-center">
         <div className="flex gap-2">
+          <Button variant="outline" size="icon">
+            <Download />
+          </Button>
           <Button variant="outline" size="icon">
             <Pencil />
           </Button>
