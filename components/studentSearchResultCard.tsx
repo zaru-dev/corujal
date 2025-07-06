@@ -41,7 +41,7 @@ function StudentFoundCard({
             <TooltipContent>{aluno}</TooltipContent>
           </Tooltip>
           <li className="pl-4">
-            {turma} da {turno === "Vespertino" ? "Manhã" : "Manhã"}
+            {turma} da {turno === "Vespertino" ? "Tarde" : "Manhã"}
           </li>
         </ul>
       </div>
