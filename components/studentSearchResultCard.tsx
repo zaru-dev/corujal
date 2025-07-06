@@ -8,7 +8,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 
-import { ArrowRight, Lock, ShieldAlert } from "lucide-react";
+import { ArrowRight, ShieldAlert } from "lucide-react";
 
 interface StudentFoundCardProps {
   aluno: string;
