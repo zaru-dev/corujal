@@ -8,7 +8,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Lock, ShieldAlert } from "lucide-react";
 
 interface StudentFoundCardProps {
   aluno: string;
@@ -46,10 +46,17 @@ function StudentFoundCard({
         </ul>
       </div>
       { !invisible && (
-        <div className="flex gap-3">
+        <div className="flex items-center justify-between">
           <Button className="cursor-pointer" onClick={onContinue}>
             Continuar <ArrowRight />
           </Button>
+
+          <Tooltip>
+            <TooltipTrigger className="cursor-help">
+              <ShieldAlert size={16}/>
+            </TooltipTrigger>
+            <TooltipContent className="max-w-42 hyphens-auto">Confime se este é o(a) aluno(a) que está procurando, caso não, não divulgue os dados dele.</TooltipContent>
+          </Tooltip>
         </div>
       )}
     </div>
