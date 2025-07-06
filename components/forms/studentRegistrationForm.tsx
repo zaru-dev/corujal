@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 // dependências:
 import React, { startTransition, useActionState, useRef } from "react";
@@ -28,30 +28,41 @@ import {
 } from "@/components/ui/select";
 
 // actions:
-import { registerStudent } from "@/lib/actions/studentRegistrationAction"; 
+import { registerStudent } from "@/lib/actions/studentRegistrationAction";
 import { Feedback } from "../feedback";
 import { Check, RefreshCwOff } from "lucide-react";
 
 const valMessage = "O número de matrícula tem 6 dígitos";
 
 const zStringReq = (msg?: string) =>
-  z.string().trim().min(1, { message: msg ?? "Este campo é obrigatório" });
+  z
+    .string()
+    .trim()
+    .min(1, { message: msg ?? "Este campo é obrigatório" });
 
 const registrationSchema = z.object({
-  matricula: z.string().trim().min(6, valMessage).max(6, valMessage).transform((val) => val.toUpperCase()),
+  matricula: z
+    .string()
+    .trim()
+    .min(6, valMessage)
+    .max(6, valMessage)
+    .transform((val) => val.toUpperCase()),
   aluno: zStringReq("Um nome válido é obrigatório"),
   ano: z.enum(["6", "7", "8", "9"], {
     message: "É obrigatório informar o ano",
   }),
-  turma: zStringReq().max(1).regex(/^[^0-9]*$/, {
-  message: "Não é permitido usar números"
-}).transform((val) => val.toUpperCase()),
+  turma: zStringReq()
+    .max(1)
+    .regex(/^[^0-9]*$/, {
+      message: "Não é permitido usar números",
+    })
+    .transform((val) => val.toUpperCase()),
   turno: z.enum(["Matutino", "Vespertino"], {
     message: "É obrigatório informar o turno",
   }),
 });
 
-export function StudentRegistrationForm(){
+export function StudentRegistrationForm() {
   const [state, formAction, isPending] = useActionState(registerStudent, null);
 
   const form = useForm<z.infer<typeof registrationSchema>>({
@@ -64,20 +75,20 @@ export function StudentRegistrationForm(){
       turno: undefined,
     },
   });
-  
+
   const formRef = useRef<HTMLFormElement>(null);
 
   async function onSubmit(data: z.infer<typeof registrationSchema>) {
     startTransition(() => {
       formAction(data);
     });
-  };
+  }
 
-  return(
+  return (
     <Form {...form}>
-      <form 
+      <form
         ref={formRef}
-        onSubmit= {form.handleSubmit(onSubmit)}
+        onSubmit={form.handleSubmit(onSubmit)}
         className="flex flex-col mt-3 gap-4"
       >
         <CardContent className="space-y-4">
@@ -89,7 +100,7 @@ export function StudentRegistrationForm(){
                 <FormItem>
                   <FormLabel>Matrícula</FormLabel>
                   <FormControl>
-                    <Input {...field} className="uppercase"/>
+                    <Input {...field} className="uppercase" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -116,13 +127,17 @@ export function StudentRegistrationForm(){
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Ano</FormLabel>
-                  <Select onValueChange={field.onChange} defaultValue={field.value} name={field.name}>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                    name={field.name}
+                  >
                     <FormControl>
                       <SelectTrigger className="w-full max-w-full">
-                        <SelectValue placeholder="Selecione"/>
+                        <SelectValue placeholder="Selecione" />
                       </SelectTrigger>
                     </FormControl>
-                    
+
                     <SelectContent>
                       <SelectItem value="6">6º ano</SelectItem>
                       <SelectItem value="7">7º ano</SelectItem>
@@ -142,7 +157,11 @@ export function StudentRegistrationForm(){
                 <FormItem>
                   <FormLabel>Turma</FormLabel>
                   <FormControl>
-                    <Input {...field} maxLength={1} className="uppercase w-full max-w-full"/>
+                    <Input
+                      {...field}
+                      maxLength={1}
+                      className="uppercase w-full max-w-full"
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -155,7 +174,11 @@ export function StudentRegistrationForm(){
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Turno</FormLabel>
-                  <Select onValueChange={field.onChange} defaultValue={field.value} name={field.name}>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                    name={field.name}
+                  >
                     <FormControl>
                       <SelectTrigger className="w-full max-w-full">
                         <SelectValue placeholder="Selecione" />
@@ -173,20 +196,28 @@ export function StudentRegistrationForm(){
           </div>
 
           {state?.message && !state.success && (
-            <Feedback icon={<RefreshCwOff />} text={state.message} />
+            <Feedback
+              variant="error"
+              text={state?.message as string}
+              className="mt-4"
+            />
           )}
           {state?.message && state.success && (
-            <Feedback icon={<Check />} text={state.message} />
+            <Feedback
+              variant="success"
+              text={state?.message as string}
+              className="mt-4"
+            />
           )}
         </CardContent>
 
         <CardFooter className="grid grid-cols-3 gap-x-4 gap-y-4">
-          <Button 
-            type="submit" 
+          <Button
+            type="submit"
             disabled={isPending}
             className="w-full max-w-full col-span-1"
           >
-            { isPending ? <Loader /> : "Criar" }
+            {isPending ? <Loader /> : "Criar"}
           </Button>
         </CardFooter>
       </form>

@@ -1,6 +1,6 @@
 import { cva, VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
-import { AlertCircleIcon, Smile, X } from "lucide-react";
+import { AlertCircleIcon, Check, Smile, X } from "lucide-react";
 
 interface FeedbackProps {
   text: string;
@@ -14,6 +14,8 @@ const feedbackVariants = cva(
       variant: {
         default: "bg-input/30 border",
         success:
+          "bg-blue-highlight/10 text-blue-highlight border-blue-highlight/30",
+        happy:
           "bg-blue-highlight/10 text-blue-highlight border-blue-highlight/30",
         error:
           "bg-orange-highlight/8 text-orange-highlight border-orange-highlight/30",
@@ -36,6 +38,8 @@ export function Feedback({
   return (
     <div className={cn(feedbackVariants({ variant, className }))}>
       {variant === "success" ? (
+        <Check size={18} />
+      ) : variant === "happy" ? (
         <Smile size={18} />
       ) : variant === "error" ? (
         <X size={18} />

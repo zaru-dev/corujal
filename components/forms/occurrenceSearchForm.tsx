@@ -24,14 +24,14 @@ import {
   StudentFoundCard,
   StudentNotFoundCard,
 } from "@/components/studentSearchResultCard";
+import { OccurrenceCard } from "@/components/occurrenceCard";
+import { Feedback } from "@/components/feedback";
 
 // ícones:
-import { RefreshCwOff, Search, Smile } from "lucide-react";
+import { Search} from "lucide-react";
 
 // actions:
 import { seachOccurrence } from "@/lib/actions/occurrenceSearchAction";
-import { OccurrenceCard } from "../occurrenceCard";
-import { Feedback } from "../feedback";
 
 // validação do formulário:
 const valMessage = "O número de matrícula tem 6 dígitos";
@@ -109,10 +109,18 @@ export function OccurrenceSeachForm() {
               invisible={true}
             />
 
-            <Feedback icon={<Smile/>} text={state?.message as string} className="mt-4"/>
+            <Feedback 
+              variant="happy"
+              text={state?.message as string} 
+              className="mt-4" 
+            />
           </>
         ) : !isPending && state?.success === 0 ? (
-          <Feedback icon={<RefreshCwOff />} text={state?.message as string} className="mt-4"/>
+          <Feedback 
+            variant="error"
+            text={state?.message as string}   
+            className="mt-4"
+          />
         ) : null }
       </CardContent>
 

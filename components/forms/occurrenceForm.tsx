@@ -40,7 +40,7 @@ import { CalendarIcon, Check, RefreshCwOff } from "lucide-react";
 
 // actions:
 import { registerOcorrence } from "@/lib/actions/ocorrenceRegistrationAction";
-import { Feedback } from "../feedback";
+import { Feedback } from "@/components/feedback";
 
 interface OccurrenceFormProps {
   matricula: string;
@@ -58,7 +58,10 @@ const occurrenceSchema = z.object({
 });
 
 export function OccurrenceForm({ matricula }: OccurrenceFormProps) {
-  const [state, formAction, isPending] = useActionState(registerOcorrence, null);
+  const [state, formAction, isPending] = useActionState(
+    registerOcorrence,
+    null
+  );
   const occurrenceForm = useForm<z.infer<typeof occurrenceSchema>>({
     resolver: zodResolver(occurrenceSchema),
     defaultValues: {
@@ -73,8 +76,8 @@ export function OccurrenceForm({ matricula }: OccurrenceFormProps) {
       matricula: matricula,
       detalhes: values.detalhes,
       data: values.data,
-      medida: values.medida
-    }
+      medida: values.medida,
+    };
 
     startTransition(() => {
       formAction(data);
@@ -83,7 +86,7 @@ export function OccurrenceForm({ matricula }: OccurrenceFormProps) {
 
   return (
     <Form {...occurrenceForm}>
-      <form 
+      <form
         className="flex flex-col gap-4 mt-4"
         onSubmit={occurrenceForm.handleSubmit(onSubmit)}
       >
@@ -181,11 +184,17 @@ export function OccurrenceForm({ matricula }: OccurrenceFormProps) {
           />
         </div>
         {state?.message && !state.success && (
-            <Feedback icon={<RefreshCwOff />} text={state.message} />
-          )}
-          {state?.message && state.success && (
-            <Feedback icon={<Check />} text={state.message} />
-          )}
+          <Feedback
+            variant="error"
+            text={state?.message as string}
+          />
+        )}
+        {state?.message && state.success && (
+          <Feedback
+            variant="success"
+            text={state?.message as string}
+          />
+        )}
         <Button type="submit">{isPending ? <Loader /> : "Cadastrar"}</Button>
       </form>
     </Form>
