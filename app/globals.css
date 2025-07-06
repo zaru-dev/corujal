@@ -44,6 +44,8 @@
   --color-orange-highlight: var(--orange-highlight);
   --color-blue-highlight: var(--blue-highlight);
   --color-yellow-highlight: var(--yellow-highlight);
+
+  --font-averia: var(--font-averia);
 }
 
 :root {
