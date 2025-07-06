@@ -1,7 +1,12 @@
 "use client";
 
 // dependências:
-import React, { startTransition, useActionState, useRef } from "react";
+import React, {
+  startTransition,
+  useActionState,
+  useEffect,
+  useRef,
+} from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -74,6 +79,10 @@ export function StudentRegistrationForm() {
       turno: undefined,
     },
   });
+
+  useEffect(() => {
+    state?.success && form.reset();
+  }, [state?.success, form]);
 
   const formRef = useRef<HTMLFormElement>(null);
 

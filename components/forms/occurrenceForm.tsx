@@ -1,7 +1,7 @@
 "use client";
 
 // importações de dependências:
-import React, { startTransition, useActionState } from "react";
+import React, { startTransition, useActionState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -83,6 +83,10 @@ export function OccurrenceForm({ matricula }: OccurrenceFormProps) {
       formAction(data);
     });
   }
+
+  useEffect(() => {
+    state?.success && occurrenceForm.reset();
+  }, [state?.success, occurrenceForm]);
 
   return (
     <Form {...occurrenceForm}>
@@ -184,16 +188,10 @@ export function OccurrenceForm({ matricula }: OccurrenceFormProps) {
           />
         </div>
         {state?.message && !state.success && (
-          <Feedback
-            variant="error"
-            text={state?.message as string}
-          />
+          <Feedback variant="error" text={state?.message as string} />
         )}
         {state?.message && state.success && (
-          <Feedback
-            variant="success"
-            text={state?.message as string}
-          />
+          <Feedback variant="success" text={state?.message as string} />
         )}
         <Button type="submit">{isPending ? <Loader /> : "Cadastrar"}</Button>
       </form>
