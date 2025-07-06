@@ -31,7 +31,7 @@ export function PanoramaOccurrencesCard({
   descricao
 } : PanoramaOccurrencesCardProps ) {
   return (
-    <Card className="max-w-[26rem] w-full text-sm gap-4">
+    <Card className="max-w-[26rem] w-full max-h-[18.6rem] text-sm gap-4">
       <CardHeader className="flex items-center justify-between border-b">
         <CardTitle className="select-none">
           Ocorrência:{" "}

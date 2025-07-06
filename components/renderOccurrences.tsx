@@ -10,15 +10,15 @@ export async function RenderOccurrences(){
 
   return(
     <>
-      { occurences.ocorrencias?.map((occurrence) => (
+      { occurences.ocorrencias?.map((o) => (
         <PanoramaOccurrencesCard 
-          key={occurrence.codigo}
-          codigo={occurrence.codigo}
-          situacao="Registrada"
-          aluno="Teste"
-          data={format(occurrence.data, "dd/MM/yyyy")}
-          medida={occurrence.medida}
-          descricao={occurrence.descricao}
+          key={o.codigo}
+          codigo={o.codigo}
+          situacao={o.situacao}
+          aluno={o.aluno}
+          data={format(o.data, "dd/MM/yyyy")}
+          medida={o.medida}
+          descricao={o.descricao}
         />
       ))}
     </>
