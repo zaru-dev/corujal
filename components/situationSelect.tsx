@@ -1,7 +1,7 @@
 "use client";
 
 // dependências:
-import { startTransition, useActionState } from "react";
+import { startTransition, useActionState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -22,6 +22,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Button } from "./ui/button";
+import { toast } from "sonner";
+
 import { RefreshCcw } from "lucide-react";
 
 // actions:
@@ -33,12 +35,15 @@ const situationSchema = z.object({
 });
 
 interface SituationSelectProps {
-  codigo: string
-  sitAtual: string
+  codigo: string;
+  sitAtual: string;
 }
 
 export function SituationSelect({ codigo, sitAtual }: SituationSelectProps) {
-  const [ state, formAction, isPeding ] = useActionState(updateOccurrenceSituation, null)
+  const [state, formAction, isPending] = useActionState(
+    updateOccurrenceSituation,
+    null
+  );
 
   const situationForm = useForm<z.infer<typeof situationSchema>>({
     resolver: zodResolver(situationSchema),
@@ -47,22 +52,29 @@ export function SituationSelect({ codigo, sitAtual }: SituationSelectProps) {
     },
   });
 
-  async function onSubmit(value: z.infer<typeof situationSchema>){
+  async function onSubmit(value: z.infer<typeof situationSchema>) {
     const data = {
       codigo: codigo,
-      newSituation: value.situacao
-    }
+      newSituation: value.situacao,
+    };
     startTransition(() => {
-      formAction(data)
-    })
+      formAction(data);
+    });
   }
+
+  useEffect(() => {
+    if(isPending){
+      toast(<div className="flex gap-2 items-center"><Loader /> Enviando</div>)
+    } else if (!isPending && state?.success) {
+      toast.success(state?.message);
+    } else {
+      toast.error(state?.message);
+    }
+  }, [isPending, state]);
 
   return (
     <Form {...situationForm}>
-      <form
-        onSubmit={situationForm.handleSubmit(onSubmit)}
-        className="flex"
-      >
+      <form onSubmit={situationForm.handleSubmit(onSubmit)} className="flex">
         <FormField
           control={situationForm.control}
           name="situacao"
@@ -86,7 +98,6 @@ export function SituationSelect({ codigo, sitAtual }: SituationSelectProps) {
                   <SelectItem value="Finalizada">Finalizada</SelectItem>
                 </SelectContent>
               </Select>
-              <FormMessage />
             </FormItem>
           )}
         />
@@ -97,9 +108,7 @@ export function SituationSelect({ codigo, sitAtual }: SituationSelectProps) {
           className="border-l-0 rounded-l-none cursor-pointer"
           type="submit"
         >
-          { isPeding ? (
-            <Loader />
-          ) :  <RefreshCcw />}
+          {isPending ? <Loader /> : <RefreshCcw />}
         </Button>
       </form>
     </Form>

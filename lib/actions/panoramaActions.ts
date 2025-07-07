@@ -75,7 +75,7 @@ export async function updateOccurrenceSituation(
 
     return {
       success: true,
-      message: `Situação da ocorrência ${data.codigo} atualizada para "${data.newSituation}".`
+      message: `A situação da ocorrência ${data.codigo} foi atualizada para "${data.newSituation}".`
     };
   } catch (error) {
     console.error(error);

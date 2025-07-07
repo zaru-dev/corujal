@@ -50,7 +50,7 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             {children}
-            <Toaster />
+            <Toaster visibleToasts={1}/>
           </ThemeProvider>
       </body>
     </html>
