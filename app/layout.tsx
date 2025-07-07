@@ -9,6 +9,7 @@ import "./globals.css";
 
 // importações de componentes:
 import { ThemeProvider } from "@/components/ui/theme-provider";
+import { Toaster } from "@/components/ui/sonner"
 
 const averia = Averia_Serif_Libre({
   weight: "400",
@@ -38,9 +39,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-br" suppressHydrationWarning className="overflow-x-hidden">
+    <html lang="pt-br" suppressHydrationWarning>
       <body
-        className={`${averia.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${averia.variable} ${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden`}
       >
         <ThemeProvider
             attribute="class"
@@ -49,6 +50,7 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             {children}
+            <Toaster />
           </ThemeProvider>
       </body>
     </html>
