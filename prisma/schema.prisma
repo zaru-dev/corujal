@@ -17,7 +17,7 @@ model Aluno {
   ocorrencias Ocorrencia[]
 
   createdAt   DateTime    @default(now()) @db.Timestamptz(3)
-  updatedAt   DateTime    @updatedAt @db.Timestamptz(3)
+  updatedAt   DateTime    @default(now()) @updatedAt @db.Timestamptz(3)
 }
 
 model Ocorrencia {
@@ -31,7 +31,7 @@ model Ocorrencia {
   aluno       Aluno    @relation(fields: [alunoId], references: [matricula], onDelete: Cascade)
 
   createdAt   DateTime @default(now()) @db.Timestamptz(3)
-  updatedAt   DateTime @updatedAt @db.Timestamptz(3)
+  updatedAt   DateTime @default(now()) @updatedAt @db.Timestamptz(3)
 
   @@index([alunoId])
 }
