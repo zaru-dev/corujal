@@ -4,6 +4,8 @@ CREATE TABLE "Aluno" (
     "aluno" TEXT NOT NULL,
     "turma" TEXT NOT NULL,
     "turno" TEXT NOT NULL,
+    "createdAt" TIMESTAMPTZ(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMPTZ(3) NOT NULL,
 
     CONSTRAINT "Aluno_pkey" PRIMARY KEY ("matricula")
 );
@@ -11,10 +13,13 @@ CREATE TABLE "Aluno" (
 -- CreateTable
 CREATE TABLE "Ocorrencia" (
     "codigo" TEXT NOT NULL,
-    "data" TIMESTAMP(3) NOT NULL,
-    "descricao" TEXT NOT NULL,
+    "situacao" TEXT NOT NULL DEFAULT 'Registrada',
+    "data" TIMESTAMPTZ(3) NOT NULL,
     "medida" TEXT NOT NULL,
+    "descricao" TEXT NOT NULL,
     "alunoId" TEXT NOT NULL,
+    "createdAt" TIMESTAMPTZ(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMPTZ(3) NOT NULL,
 
     CONSTRAINT "Ocorrencia_pkey" PRIMARY KEY ("codigo")
 );

@@ -9,30 +9,29 @@ datasource db {
   directUrl = env("DIRECT_URL") 
 }
       
-// tabela/modelo dos alunos
 model Aluno {
-  matricula   String      @id            // chave primária única (ex: 20251023)
-  aluno       String                      // nome completo do aluno
-  turma       String                      // ex: "A", "B", "C"
-  turno       String                      // ex: "manhã", "tarde"
-  ocorrencias Ocorrencia[]               // relação 1:N com ocorrências (um aluno pode ter várias)
+  matricula   String      @id
+  aluno       String
+  turma       String
+  turno       String
+  ocorrencias Ocorrencia[]
+
+  createdAt   DateTime    @default(now()) @db.Timestamptz(3)
+  updatedAt   DateTime    @updatedAt @db.Timestamptz(3)
 }
 
-// tabela/modelo das ocorrências disciplinares
 model Ocorrencia {
-  codigo      String   @id // ID único da ocorrência (ex: "20251023-001")
-  data        DateTime                               // data da ocorrência
-  descricao   String                                 // o que aconteceu
-  medida      String                                 // punição aplicada (ex: "suspensão", "advertência")
-  situacao    String  @default("Registrada")
-  
-  alunoId     String                                 // FK (foreign key) que aponta pra matrícula do aluno
+  codigo      String   @id
+  situacao    String   @default("Registrada")
+  data        DateTime @db.Timestamptz(3)
+  medida      String
+  descricao   String
+
+  alunoId     String
   aluno       Aluno    @relation(fields: [alunoId], references: [matricula], onDelete: Cascade)
 
-  // define a relação com o modelo Aluno:
-  // - alunoId é a FK
-  // - references: [matricula] → aponta pra qual campo do Aluno ela se refere
-  // - onDelete: Cascade → se o aluno for deletado, as ocorrências também são
+  createdAt   DateTime @default(now()) @db.Timestamptz(3)
+  updatedAt   DateTime @updatedAt @db.Timestamptz(3)
 
-  @@index([alunoId]) // cria índice na coluna alunoId pra melhorar consultas
+  @@index([alunoId])
 }
