@@ -37,7 +37,10 @@ export function PanoramaOccurrencesCard({
           Ocorrência:{" "}
           <span className="font-mono select-text">{codigo}</span>
         </CardTitle>
-        <Badge variant="outline" className="select-none">
+        <Badge 
+          variant = { situacao === "Registrada" ? "default" 
+            : situacao === "Revisada" ? "revisada"
+            : situacao === "Em andamento" ? "emAndamento" : "outline"} className="select-none">
           { situacao === "" || situacao === undefined ? "Indefinido" : situacao }
         </Badge>
       </CardHeader>
