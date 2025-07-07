@@ -19,7 +19,7 @@ export default function Page(){
       </header>
 
       <section className="max-w-dvw w-full min-h-main-container my-4 flex justify-center">
-        <main className="container w-full flex flex-wrap gap-4">
+        <main className="container w-full flex flex-wrap gap-4 content-start">
           <RenderOccurrences />
         </main>
       </section>
