@@ -25,7 +25,7 @@ export async function bringOccurrences(): Promise<PanoramaActionResult> {
         }
       },
       orderBy: {
-        data: 'desc',
+        updatedAt: 'desc',
       },
     });
 
