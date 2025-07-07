@@ -74,7 +74,7 @@ export function PanoramaOccurrencesCard({
           </Button>
         </div>
 
-        <SituationSelect />
+        <SituationSelect codigo={codigo} sitAtual={situacao}/>
       </CardFooter>
     </Card>
   );
