@@ -1,5 +1,8 @@
 "use server";
 
+// dependências:
+import { revalidatePath } from 'next/cache'
+
 // funções:
 import { db } from "@/lib/db";
 
@@ -67,6 +70,8 @@ export async function updateOccurrenceSituation(
       where: { codigo: data.codigo },
       data: { situacao: data.newSituation },
     });
+
+    revalidatePath('/panorama')
 
     return {
       success: true,

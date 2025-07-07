@@ -5,6 +5,8 @@ import { PanoramaOccurrencesCard } from "@/components/panoramaOccurrencesCard";
 import { bringOccurrences } from "@/lib/actions/panoramaActions";
 import { format } from "date-fns";
 
+export const revalidate = 0   // 🔄 força sempre buscar dados frescos
+
 export async function RenderOccurrences(){
   const occurences = await bringOccurrences();
 
