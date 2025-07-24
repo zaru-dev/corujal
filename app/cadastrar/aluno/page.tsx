@@ -1,9 +1,9 @@
-// importações de componentes:
+// Importações de componentes
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { StudentRegistrationForm } from "@/components/forms/studentRegistrationForm";
 
-export default function Page(){
-  return(
+export default function CadastrarPage() {
+  return (
     <Card className="max-w-md w-full max-h-[calc(100dvh-2rem)] gap-0">
       <CardHeader>
         <CardTitle>Cadastro de aluno</CardTitle>
@@ -13,4 +13,4 @@ export default function Page(){
       <StudentRegistrationForm />
     </Card>
   );
-};
+}
