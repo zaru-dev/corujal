@@ -10,6 +10,7 @@ import "./globals.css";
 // importações de componentes:
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import { Toaster } from "@/components/ui/sonner"
+import { ProgressBar } from "@/components/ui/progress";
 
 const averia = Averia_Serif_Libre({
   weight: "400",
@@ -51,6 +52,7 @@ export default function RootLayout({
           >
             {children}
             <Toaster visibleToasts={1}/>
+            <ProgressBar />
           </ThemeProvider>
       </body>
     </html>
