@@ -1,11 +1,11 @@
-generator client {
-  provider = "prisma-client-js"
-}
-
 datasource db {
   provider  = "postgresql"
   url       = env("DATABASE_URL")
   directUrl = env("DIRECT_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
 }
 
 model Aluno {
@@ -30,4 +30,64 @@ model Ocorrencia {
   aluno     Aluno    @relation(fields: [alunoId], references: [matricula], onDelete: Cascade)
 
   @@index([alunoId])
+}
+
+model User {
+  id            String    @id
+  name          String
+  email         String
+  emailVerified Boolean
+  image         String?
+  createdAt     DateTime  @db.Timestamptz(3)
+  updatedAt     DateTime  @db.Timestamptz(3)
+  sessions      Session[]
+  accounts      Account[]
+
+  @@unique([email])
+  @@map("user")
+}
+
+model Session {
+  id        String   @id
+  expiresAt DateTime  @db.Timestamptz(3)
+  token     String
+  createdAt DateTime  @db.Timestamptz(3)
+  updatedAt DateTime  @db.Timestamptz(3)
+  ipAddress String?
+  userAgent String?
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([token])
+  @@map("session")
+}
+
+model Account {
+  id                    String    @id
+  accountId             String
+  providerId            String
+  userId                String
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  accessToken           String?
+  refreshToken          String?
+  idToken               String?
+  accessTokenExpiresAt  DateTime?   @db.Timestamptz(3)
+  refreshTokenExpiresAt DateTime?   @db.Timestamptz(3)
+  scope                 String?
+  password              String?
+  createdAt             DateTime    @db.Timestamptz(3)
+  updatedAt             DateTime    @db.Timestamptz(3)
+
+  @@map("account")
+}
+
+model Verification {
+  id         String    @id
+  identifier String
+  value      String
+  expiresAt  DateTime   @db.Timestamptz(3)
+  createdAt  DateTime?  @db.Timestamptz(3)
+  updatedAt  DateTime?  @db.Timestamptz(3)
+
+  @@map("verification")
 }
