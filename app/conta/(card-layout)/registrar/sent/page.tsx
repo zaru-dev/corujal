@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { CardContent } from "@/components/ui/card";
 import { ArrowRight, CircleCheckIcon } from "lucide-react";
 
-export default function(){
+export default function Page(){
   return(
     <CardContent>
       <div className="flex items-center gap-2 ">

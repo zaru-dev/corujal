@@ -29,6 +29,7 @@ export function OauthButton({ provider, className }: LoginButtonProps) {
       })
       return data
     } catch (error) {
+      console.error("Erro ao fazer login com o provedor:", error);
       setLoading(false);
     }
   };

@@ -1,5 +1,5 @@
 // importações de componentes:
-import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardDescription, CardHeader } from "@/components/ui/card";
 import { StudentSeachForm } from "@/components/forms/studentSearchForm";
 import { CardsTitle } from "@/components/cardsHeader";
 

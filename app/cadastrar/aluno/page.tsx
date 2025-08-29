@@ -3,7 +3,6 @@ import {
   Card,
   CardDescription,
   CardHeader,
-  CardTitle,
 } from "@/components/ui/card";
 import { StudentRegistrationForm } from "@/components/forms/studentRegistrationForm";
 import { CardsTitle } from "@/components/cardsHeader";

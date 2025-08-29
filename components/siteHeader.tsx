@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { ThemeToggle } from "./ui/theme-toggle";
-import { Button } from "./ui/button";
 import { AccountActionButton } from "./accountActionsButton";
 
 export function SiteHeader() {
