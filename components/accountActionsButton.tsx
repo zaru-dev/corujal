@@ -1,6 +1,5 @@
 import Link from "next/link";
-import { Button } from "../ui/button";
-import { LogInIcon, UserPlus } from "lucide-react";
+import { Button } from "./ui/button";
 
 interface AccountActionButtonProps {
   action: "login" | "register";
@@ -15,7 +14,7 @@ const actionConfig = {
     variant: "default"
   },
   "register": {
-    href: "/conta/criar",
+    href: "/conta/registrar",
     label: "Criar conta",
     variant: "outline"
   }
