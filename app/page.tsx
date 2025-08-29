@@ -5,7 +5,7 @@ import {
   CardContent,
   CardDescription,
 } from "@/components/ui/card";
-import { AccountActionButton } from "@/components/home-buttons/accountActionsButton";
+import { AccountActionButton } from "@/components/accountActionsButton";
 import { ActionButton } from "@/components/home-buttons/actionsButtons";
 import { SiteHeader } from "@/components/siteHeader";
 
