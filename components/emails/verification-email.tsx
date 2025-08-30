@@ -33,12 +33,13 @@ export function VerificationEmail({
       <Tailwind>
         <Body className="min-w-dvw flex justify-center items-center my-4">
           <Container className="bg-[#171717] text-white rounded-3xl mx-auto max-w-md max-h-[26.375rem]">
-            <div className="px-8 py-6">
+            <div className="px-10 py-6">
               <Heading className="text-2xl font-semibold">
                 <Img
                   alt="Logo do Corujal"
-                  width={40}
+                  width={100}
                   src="https://corujal.raavius.com/corujal.png"
+                  className="mt-4"
                 />
               </Heading>
               <Text className="hyphens-auto">
