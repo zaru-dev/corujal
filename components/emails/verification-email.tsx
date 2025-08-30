@@ -38,7 +38,7 @@ export function VerificationEmail({
                 <Img
                   alt="Logo do Corujal"
                   width={40}
-                  src="https://4aol7q5h4wjpfp1m.public.blob.vercel-storage.com/corujal.svg"
+                  src="https://corujal.raavius.com/corujal.png"
                 />
               </Heading>
               <Text className="hyphens-auto">
