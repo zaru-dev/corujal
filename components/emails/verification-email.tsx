@@ -36,7 +36,7 @@ export function VerificationEmail({
             <div className="px-10 py-6">
               <Heading className="text-2xl font-semibold">
                 <Img
-                  alt="Logo do Corujal"
+                  alt="Logo do Palim"
                   width={100}
                   src="https://corujal.raavius.com/corujal.png"
                   className="mt-4"
@@ -81,7 +81,7 @@ export function VerificationEmail({
               </Text>
 
               <Text className="text-xs text-[#a1a1a1]">
-                &#169; {year} Corujal. Todos os direitos reservados.
+                &#169; {year} Palim. Todos os direitos reservados.
               </Text>
             </div>
           </Container>

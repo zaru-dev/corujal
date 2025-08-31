@@ -31,7 +31,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Corujal",
+  title: "Palim",
 };
 
 export default function RootLayout({

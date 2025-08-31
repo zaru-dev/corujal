@@ -23,7 +23,7 @@ export default function Home() {
       <Card className="border-none shadow-lg">
         <CardHeader>
           <CardTitle className="text-3xl md:text-4xl font-averia font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent ">
-            corujal
+            palim
           </CardTitle>
           <CardDescription>
             Sistema integrado de gestão escolar.

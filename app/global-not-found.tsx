@@ -25,7 +25,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "404 · Corujal",
+  title: "404 · Palim",
   description: "A página que você está procurando não foi encontrada.",
 };
 
