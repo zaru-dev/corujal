@@ -1,4 +1,4 @@
-import { CardsTitle } from "@/components/cardsHeader";
+import { CardsTitle } from "@/components/cardsTitle";
 import { OccurrenceSeachForm } from "@/components/forms/occurrenceSearchForm";
 import { Card, CardDescription, CardHeader } from "@/components/ui/card";
 

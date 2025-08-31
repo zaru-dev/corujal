@@ -1,7 +1,7 @@
 // importações de componentes:
 import { Card, CardDescription, CardHeader } from "@/components/ui/card";
 import { StudentSeachForm } from "@/components/forms/studentSearchForm";
-import { CardsTitle } from "@/components/cardsHeader";
+import { CardsTitle } from "@/components/cardsTitle";
 
 export default function Page(){
   return(
