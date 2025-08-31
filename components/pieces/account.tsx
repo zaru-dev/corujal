@@ -1,3 +1,5 @@
+"use server"
+
 // componentes:
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
@@ -70,7 +72,7 @@ function Unlogged() {
 }
 
 export async function Account() {
-  const session = await auth.api.getSession({
+    const session = await auth.api.getSession({
     headers: await headers(),
   });
 
