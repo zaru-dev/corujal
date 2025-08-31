@@ -18,8 +18,9 @@ export const auth = betterAuth({
   // plugins:
   plugins: [
      passkey({
-      rpID: "corujal",
-      rpName: "Corujal",
+      rpID: "palim.com.br",
+      rpName: "Palim",
+      origin: "https:/palim.com.br",
       authenticatorSelection: {
         authenticatorAttachment: "cross-platform",
         residentKey: "preferred",

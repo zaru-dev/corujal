@@ -20,15 +20,15 @@ export async function sendVerificationEmail({
   verifyUrl,
 }: SendVerificationEmailProps ) {
   const { data, error } = await resend.emails.send({
-    from: "Corujal <confirm@corujal.raavius.com>",
+    from: "Palim <confirm@mail.palim.com.br>",
     to: [email],
-    subject: "Confirme seu e-mail · Corujal",
+    subject: "Confirme seu e-mail · Palim",
     react: VerificationEmail({
       name: name,
       email: email,
       verifyUrl: verifyUrl as string,
     }),
-    text: `Oi, ${name}! Antes de liberar seu acesso ao Corujal, precisamos confirmar que este e-mail (${email}) é realmente seu. É rapidinho, só clicar aqui no link: ${verifyUrl}`
+    text: `Oi, ${name}! Antes de liberar seu acesso ao Palim, precisamos confirmar que este e-mail (${email}) é realmente seu. É rapidinho, só clicar aqui no link: ${verifyUrl}`
   });
 
   if (error) {
